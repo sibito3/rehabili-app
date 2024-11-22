@@ -4,7 +4,8 @@ import MainComponent from "@/components/MainComponent.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {path: '/', name: 'main', component: MainComponent},
-    {path: '/about', name: 'about', component: AboutVue, props: {msg: 'Welcome to Your Vue.js + TypeScript App'}}
+    {path: '/about', name: 'about', component: AboutVue, props: {msg: 'Welcome to Your Vue.js + TypeScript App'}},
+    {path: '/*', name: 'unknownPath', redirect: {name: 'main'}}
 ];
 
 const router = createRouter({

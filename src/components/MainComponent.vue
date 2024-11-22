@@ -1,5 +1,5 @@
 <template>
-<div data-bs-theme="dark">
+<div>
     <div>This is Main Component</div>
     <p>ルーレットお試し</p>
     <div>{{ prefectureList[resultIndex].name }}</div>
