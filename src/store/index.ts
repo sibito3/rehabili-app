@@ -53,12 +53,39 @@ const prefectures: Prefecture[] = [
 
 const store = createStore({
     state: {
-        prefectures: prefectures
+        prefectures: prefectures,
+        targetPrefectures: prefectures
     },
     getters: {
         // 現在の都道府県の全てを取得
         prefectures(state){
             return state.prefectures;
+        },
+        // 除外されていない都道府県のみを取得
+        targetPrefectures(state){
+            return state.prefectures.filter((p, i) => p.isExclude === false);
+        }
+    },
+    mutations: {
+        /** 渡された都道府県のリストでルーレット対象のリストを更新する */
+        updatePrefectures(state, payload: Prefecture[]){
+            state.prefectures = payload;
+        }
+    },
+    actions: {
+        /** 引数に渡された都道府県の除外フラグの切り替えを行う */
+        toggleExcludeFlag({commit, state}, prefecture: Prefecture) {
+            const newPrefectures :Prefecture[] = state.prefectures.map((p, i) => {
+                if(p.id === prefecture.id) {
+                   return {
+                    id: p.id,
+                    name: p.name,
+                    isExclude: !p.isExclude
+                   };
+                }
+                else return p;
+            })
+            commit('updatePrefectures', newPrefectures)
         }
     }
 })

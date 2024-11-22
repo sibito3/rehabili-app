@@ -5,7 +5,7 @@ import { Prefecture } from "./util/types"
 declare module '@vue/runtime-core' {
     // ストアのステートを宣言する
     interface State {
-        prefectures: Prefecture[]
+        prefectures: Prefecture[],
     }
   
     // `this.$store` の型付けを提供する
