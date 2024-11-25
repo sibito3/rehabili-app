@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="main-container container">
-        <div>This is Main Component</div>
+        <!-- <div>This is Main Component</div> -->
         <div class="row title-area mt-3">
             <div><h1>都道府県ルーレット</h1></div>
         </div>
@@ -31,7 +31,7 @@
                             <li v-for="p in prefectureList" :key="p.id">
                                 <div class="form-check">
                                     <span class="check-custom">
-                                        <input v-bind:value="p.isExclude" v-on:change="onChangeCheckBox(p)" class="form-check-inline" type="checkbox" :id="`flexCheckPrefecture${p.id}`">
+                                        <input v-bind:checked="p.isExclude" v-on:change="onChangeCheckBox(p)" class="form-check-inline" type="checkbox" :id="`flexCheckPrefecture${p.id}`">
                                     </span>
                                     <label class="form-check-label" :for="`flexCheckPrefecture${p.id}`">
                                         {{ p.name }}
@@ -59,7 +59,6 @@ computed: {
         return this.$store.getters.prefectures;
     },
     targetPrefectureList(): Prefecture[] {
-        console.log("aaaa", this.$store.getters.targetPrefectures);
         return this.$store.getters.targetPrefectures;
     }
 },
